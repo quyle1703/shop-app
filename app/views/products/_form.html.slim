@@ -1,0 +1,22 @@
+= bootstrap_form_for @product,url: profile_products_path, multipart: true do |f|
+  - if @product.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      ul
+        - @product.errors.full_messages.each do |message|
+          li = message
+  .field
+    = f.text_field :name
+  .field
+    = f.text_field :price
+  .field
+    = f.text_field :description
+  .field.col-md-3
+    = f.file_field :image
+  .field
+    = f.collection_select :category_id, Category.all, :id, :name, { prompt: "Choose a category" }
+
+  .actions.text-center 
+    = link_to 'Back', profile_products_path, class: 'btn btn-info'
+    = f.submit
+

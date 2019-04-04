@@ -1,0 +1,22 @@
+.span3
+  h2 Sign up
+  = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), multipart: true) do |f|
+    = devise_error_messages!
+    form
+      = f.text_field :first_name, class: "span3"
+      = f.text_field :last_name, class: "span3"
+      = f.email_field :email, class: "span3"
+      = f.text_field :profession, class: "span3"
+      = f.text_field :phone, class: "span3"
+
+      br/
+      = f.password_field :password, autocomplete: "new-password"
+      - if @minimum_password_length
+        em
+          | (#{@minimum_password_length} characters minimum)
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+      .col-md-4
+        = f.file_field :avatar
+      = f.submit "Register", class: "btn btn-success"
+      .clearfix
+= render "devise/shared/links"

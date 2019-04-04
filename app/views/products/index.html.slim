@@ -1,0 +1,32 @@
+h1.text-center My Inventory
+
+table.table.table-bordered
+  thead
+    tr
+      th Name
+      th Price
+      th Image
+      th Description
+      th User
+      th
+      th
+      th
+
+  tbody
+    - @products.each do |product|
+      tr
+        td = link_to product.name, product_path(product)
+        td = product.price
+        td = product_image(product)
+        td = truncate(product.description)
+        td = product.user.full_name
+        td = link_to 'Edit', edit_profile_product_path(current_user, product)
+        td = link_to 'Destroy', profile_product_path(current_user, product), data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+div style=("display: flex;  align-items: center; justify-content: center; margin-left: 40%; margin-right: 40%;") 
+  = will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+div
+
+.text-center = link_to 'New Product', new_profile_product_path, class: "btn btn-info"

@@ -1,0 +1,27 @@
+/! Page Content
+.container
+  .row
+    = render 'layouts/category'
+    /! /.col-lg-3
+    .col-lg-9
+      = render 'layouts/carousel'
+      .row
+        - @products = Product.paginate(:page => params[:page], :per_page => 6).order(created_at: :desc)
+        - @products.each do |product|
+          .col-lg-4.col-md-6.mb-4
+            .card.h-100
+              = product_image(product)
+              .card-body
+                h4.card-title
+                  = link_to product.name, product_path(product)
+                h5= number_to_currency product.price
+                p.card-text = truncate(product.description)
+              .card-footer
+                small.text-muted ★ ★ ★ ★ ☆
+      /! /.row
+      div style=("display: flex;  align-items: center; justify-content: center; margin-left: 40%; margin-right: 40%;") 
+        = will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+      div
+        /! /.col-lg-9
+      /! /.row
+    /! /.container

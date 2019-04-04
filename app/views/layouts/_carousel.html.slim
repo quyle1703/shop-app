@@ -1,0 +1,18 @@
+#carouselExampleIndicators.carousel.slide.my-4 data-ride="carousel" 
+  ol.carousel-indicators
+    li.active data-slide-to="0" data-target="#carouselExampleIndicators" 
+    li data-slide-to="1" data-target="#carouselExampleIndicators" 
+    li data-slide-to="2" data-target="#carouselExampleIndicators" 
+  .carousel-inner role="listbox" 
+    .carousel-item.active
+      .d-block.img-fluid =image_tag "banner1.jpg", alt: "No Image Found", :size => '800x300'
+    .carousel-item
+      .d-block.img-fluid =image_tag "banner2.jpg", alt: "No Image Found", :size => '800x300'
+    .carousel-item
+      .d-block.img-fluid =image_tag "banner3.jpg", alt: "No Image Found", :size => '800x300'
+  a.carousel-control-prev data-slide="prev" href="#carouselExampleIndicators" role="button" 
+    span.carousel-control-prev-icon aria-hidden="true" 
+    span.sr-only Previous
+  a.carousel-control-next data-slide="next" href="#carouselExampleIndicators" role="button" 
+    span.carousel-control-next-icon aria-hidden="true" 
+    span.sr-only Next

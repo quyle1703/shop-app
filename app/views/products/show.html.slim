@@ -1,0 +1,32 @@
+/! Page Content
+.container
+  .row
+    = render "layouts/category"
+    /! /.col-lg-3
+    .col-lg-9
+      .text-center.card.mt-4
+        .card-img-top.img-fluid = product_image(@product, "large")
+        .card-body
+          h3.card-title = @product.name
+          h4 = number_to_currency @product.price
+          p.card-text = @product.description
+          span =link_to "Add to cart", add_cart_path, method: :post, class: 'btn btn-success'
+      /! /.card
+      .card.card-outline-secondary.my-4
+        .card-header.text-center
+          | Product Reviews
+        .card-body
+          p For those interested in getting into the indie clothing world, Hideyourarms is a great place to see some options. They showcase many different brands and designers and sometimes provide personal opinions from the multiple writers. The site focuses on hoodies as well as t-shirts, and will occasionally also feature mainstream pop-culture clothing. The site states that over 100,000 people visit each month, so clearly they are doing something right. It is definitely worth a visit if you are looking for something unique.
+          small.text-muted Posted by Anonymous on 3/1/17
+          hr/
+          p For those interested in getting into the indie clothing world, Hideyourarms is a great place to see some options. They showcase many different brands and designers and sometimes provide personal opinions from the multiple writers. The site focuses on hoodies as well as t-shirts, and will occasionally also feature mainstream pop-culture clothing. The site states that over 100,000 people visit each month, so clearly they are doing something right. It is definitely worth a visit if you are looking for something unique.
+          small.text-muted Posted by Anonymous on 3/1/17
+          hr/
+          p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.
+          small.text-muted Posted by Anonymous on 3/1/17
+          hr/
+          .text-center 
+            a.btn.btn-success href="#"  Leave a Review
+      /! /.card
+    /! /.col-lg-9
+/! /.container

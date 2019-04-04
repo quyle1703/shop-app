@@ -1,0 +1,38 @@
+doctype html
+html
+  body
+    .container-fluid
+      /! Breadcrumbs
+      ol.breadcrumb
+        li.breadcrumb-item
+          a href="#"  Order Management
+        li.breadcrumb-item.active Overview
+      /! DataTables Example
+      .card.mb-3
+        .card-header
+          i.fas.fa-table
+          | Order List
+        .card-body
+          .table-responsive
+            table#dataTable.table.table-bordered cellspacing="0" width="100%" 
+              thead
+                tr
+                  th #
+                  th Ordered By
+                  th Created at
+                  th Status
+                  th Updated at
+              tbody
+                - @orders.each do |order|
+                  tr
+                    td= order.id
+                    td= order.user.full_name
+                    td= order.created_at
+                    td= order.order_status.name
+                    td= order.updated_at
+            div style=("display: flex;  align-items: center; justify-content: center; margin-left: 40%; margin-right: 40%;") 
+              = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+        - if Order.maximum(:updated_at) != nil
+          .card-footer.small.text-muted
+            | Updated at #{Order.maximum(:updated_at)}
+    /! /.container-fluid

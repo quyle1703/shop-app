@@ -1,0 +1,46 @@
+h1 Checkout
+h2 You are checking out the following products:
+table.table.table-hover
+  thead
+    tr
+      th Quantity
+      th Product
+      th Image
+      th Price
+  tbody
+    - @cart.items.each do |item|
+      tr
+        td= item.quantity
+        td= link_to item.product.name, item.product
+        td= image_tag item.product.image.thumb.url
+        td.text-right= number_to_currency item.total_price
+p.text-right
+  strong
+    | Total price: #{number_to_currency @cart.total_price}
+
+= form_for @order_form, url: orders_path do |f|
+  = render "orders/errors"
+  h3 Please fill in your personal details below
+  h6
+    em You have to do this only once. After your first order, your info will be loaded automatically
+  = f.fields_for :user, f.object.user do |u|
+    .form-group
+      p
+        = u.text_field :first_name, placeholder: "First Name", class: "form-control input-lg"
+      p
+        = u.text_field :email, placeholder: "Email", class: "form-control"
+        span.help-block This will help you track your order more effectively.
+    .form-group
+      .row
+        p.col-xs-6= u.text_field :address, placeholder: "Address", class: "form-control"
+        p.col-xs-6= u.text_field :postal_code, placeholder: "Postal code / Zip code", class: "form-control"
+        p.col-xs-6= u.text_field :city, placeholder: "City", class: "form-control"
+      p= u.label :country
+      p= u.country_select :country, priority_countries: [ "GB", "US", "DE", "ES", "PT" ], class: "form-control"
+      p= u.text_field :phone, placeholder: "Phone", class: "form-control"
+  .row
+    .col-sm-6
+      p= link_to "Back", :back, class: "btn btn-info"
+    .col-sm-8
+      p= f.submit 'Place Order', class: "btn btn-success"
+
